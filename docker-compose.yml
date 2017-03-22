@@ -1,0 +1,9 @@
+application:
+    build: ./nlp
+    volumes:
+        - ../gary-nlp:/bot/gary
+        - ./logs/gary-nlp:/var/log/gary-nlp
+    environment:
+        - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+        - BOT_ID=${BOT_ID}
+    tty: true
