@@ -11,3 +11,5 @@ RUN apt-get update \
     && apt-get clean
 
 RUN pip install slackclient
+
+CMD ["/usr/bin/python2.7", "/bot/gary/starterbot.py"]
