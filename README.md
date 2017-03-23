@@ -26,11 +26,14 @@ Checkout your token on slack api info :
 
 `$ docker-compose start`
 
-See your container :
+Garybot should be started
+
+To see container running :
 
 `$ docker-compose ps`
 
-Go to container shell and start bot:
+
+### How to restart bot manually:
 
 `$ docker exec -it garydocker_application_1 bash`
 
