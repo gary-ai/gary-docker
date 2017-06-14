@@ -1,9 +1,21 @@
-application:
-    build: ./nlp
+connector:
+    hostname: connector
+    build: ./connector
     volumes:
-        - ../gary-nlp:/bot/gary
-        - ./logs/gary-nlp:/var/log/gary-nlp
+        - ../gary-connector:/bot/gary
+        - ./logs/gary-connector:/var/log/connector
     environment:
         - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
         - BOT_ID=${BOT_ID}
+    tty: true
+mongodb:
+    hostname: mongo
+    links:
+        - "connector"
+    build: ./mongo
+    environment:
+        - DB_PASS=${DB_PASS}
+        - DB_USER=${DB_USER}
+    ports:
+        - 27017:27017
     tty: true
