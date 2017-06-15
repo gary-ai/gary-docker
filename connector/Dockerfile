@@ -12,4 +12,4 @@ RUN apt-get update \
 
 RUN pip install slackclient
 
-CMD ["/usr/bin/python2.7", "/bot/gary/starterbot.py"]
+CMD ["/usr/bin/python2.7", "/bot/gary/slack_bot_connector.py"]

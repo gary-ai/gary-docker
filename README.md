@@ -37,6 +37,6 @@ To see container running :
 
 `$ docker exec -it garydocker_application_1 bash`
 
-`/# cd /bot/gary/`
+`$ cd /bot/gary/`
 
-`/# python starterbot.py`
+`$ python slack_bot_connector.py`
