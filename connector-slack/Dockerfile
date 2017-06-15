@@ -6,11 +6,10 @@ RUN apt-get update \
     && apt-get install -y \
     python2.7 \
     python-pip \
-    virtualenv \
-    && apt-get autoremove \
-    && apt-get clean
+    build-essential \
+    python-dev
 
-RUN pip install slackclient
+WORKDIR /bot/gary
 RUN mkdir /var/log/connector-slack
-RUN touch /var/log/connector-slack/output.txt
-CMD /usr/bin/python2.7 /bot/gary/slack_bot_connector.py > /var/log/connector-slack/output.txt
+
+CMD pip install -r requirements.txt && /usr/bin/python2.7 /bot/gary/slack_bot_connector.py

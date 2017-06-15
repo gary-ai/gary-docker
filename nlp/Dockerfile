@@ -6,12 +6,10 @@ RUN apt-get update \
     && apt-get install -y \
     python2.7 \
     python-pip \
-    virtualenv \
-    && apt-get autoremove \
-    && apt-get clean
+    build-essential \
+    python-dev
 
 WORKDIR /bot/nlp
 RUN mkdir /var/log/nlp
-RUN touch /var/log/nlp/output.txt
 
-CMD pip install -r requirements.txt && /usr/bin/python2.7 /bot/nlp/app.py > /var/log/nlp/output.txt
+CMD pip install -r requirements.txt && /usr/bin/python2.7 api.py > /var/log/nlp/output.txt

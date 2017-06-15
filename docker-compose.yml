@@ -6,7 +6,7 @@ connector-slack:
         - ./logs/connector-slack:/var/log/connector-slack
     environment:
         - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-        - SLACK_BOT_ID=${BOT_ID}
+        - SLACK_BOT_ID=${SLACK_BOT_ID}
     tty: true
 connector-messenger:
     hostname: connector-messenger
