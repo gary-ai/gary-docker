@@ -2,23 +2,25 @@
 
 ## Container
 
-- gary/gary-nlp : NLP python Real time messaging API
+- ./slack-connector : NLP python Real time messaging API Slack
+- ./messenger-connector : NLP python Real time messaging API Messenger
+- ./mongo : MongoDB
 
-## Launch garybot
+## Launch garybot on your slack
 
 `$ git clone git@github.com:gary-ai/gary-docker.git`
 
-`$ git clone git@github.com:gary-ai/gary-nlp.git`
+`$ git clone git@github.com:gary-ai/gary-connector-slack.git`
 
 `$ cd gary-docker`
 
 `$ touch .env`
 
-Checkout your token on slack api info :
+Checkout your token on slack api info and paste them in .env file:
 
 `$ echo "SLACK_BOT_TOKEN=xxx" > .env`
 
-`$ echo "BOT_ID=xxx" >> .env`
+`$ echo "SLACK_BOT_ID=xxx" >> .env`
 
 `$ docker-compose build`
 
@@ -33,9 +35,9 @@ To see container running :
 `$ docker-compose ps`
 
 
-### How to restart bot manually:
+### How to restart slackbot manually:
 
-`$ docker exec -it garydocker_application_1 bash`
+`$ docker exec -it garydocker_slackconnector_1 bash`
 
 `$ cd /bot/gary/`
 

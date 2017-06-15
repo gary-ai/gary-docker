@@ -10,6 +10,4 @@ RUN apt-get update \
     && apt-get autoremove \
     && apt-get clean
 
-RUN pip install slackclient
-
-CMD ["/usr/bin/python2.7", "/bot/gary/slack_bot_connector.py"]
+#TODO requirment messenger
