@@ -9,7 +9,9 @@ RUN apt-get update \
     build-essential \
     python-dev
 
-WORKDIR /bot/gary
-RUN mkdir /var/log/connector-slack
+WORKDIR /bot
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 
-CMD pip install -r requirements.txt && /usr/bin/python2.7 /bot/gary/slack_bot_connector.py
+CMD /usr/bin/python2.7 slack_bot_connector.py
+ENTRYPOINT ["/entrypoint.sh"]

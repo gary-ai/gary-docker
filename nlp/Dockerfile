@@ -9,7 +9,9 @@ RUN apt-get update \
     build-essential \
     python-dev
 
-WORKDIR /bot/nlp
-RUN mkdir /var/log/nlp
+WORKDIR /bot
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
 
-CMD pip install -r requirements.txt && /usr/bin/python2.7 api.py > /var/log/nlp/output.txt
+CMD /usr/bin/python2.7 api.py
+ENTRYPOINT ["/entrypoint.sh"]

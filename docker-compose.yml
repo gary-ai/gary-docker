@@ -2,7 +2,7 @@ connector-slack:
     hostname: connector-slack
     build: ./connector-slack
     volumes:
-        - ../gary-connector/slack:/bot/gary
+        - ../gary-connector/slack:/bot
         - ./logs/connector-slack:/var/log/connector-slack
     environment:
         - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
@@ -12,7 +12,7 @@ connector-messenger:
     hostname: connector-messenger
     build: ./connector-messenger
     volumes:
-        - ../gary-connector/messenger:/bot/gary
+        - ../gary-connector/messenger:/bot
         - ./logs/connector-messenger:/var/log/connector-messenger
     environment:
         - MESSENGER_BOT_TOKEN=${MESSENGER_BOT_TOKEN}
@@ -21,14 +21,14 @@ connector-messenger:
 nlp:
     hostname: nlp
     build: ./nlp
+    links:
+        - "mongo"
     volumes:
-        - ../gary-nlp:/bot/nlp
+        - ../gary-nlp:/bot
         - ./logs/nlp:/var/log/nlp
     tty: true
-mongodb:
+mongo:
     hostname: mongo
-    links:
-        - "nlp"
         - "connector-slack"
         - "connector-messenger"
     build: ./mongo
