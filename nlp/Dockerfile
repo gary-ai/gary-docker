@@ -10,7 +10,8 @@ RUN apt-get update \
     && apt-get autoremove \
     && apt-get clean
 
-RUN pip install slackclient
-RUN mkdir /var/log/connector-slack
-RUN touch /var/log/connector-slack/output.txt
-CMD /usr/bin/python2.7 /bot/gary/slack_bot_connector.py > /var/log/connector-slack/output.txt
+WORKDIR /bot/nlp
+RUN mkdir /var/log/nlp
+RUN touch /var/log/nlp/output.txt
+
+CMD pip install -r requirements.txt && /usr/bin/python2.7 /bot/nlp/app.py > /var/log/nlp/output.txt

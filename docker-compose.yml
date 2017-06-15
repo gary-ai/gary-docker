@@ -18,9 +18,17 @@ connector-messenger:
         - MESSENGER_BOT_TOKEN=${MESSENGER_BOT_TOKEN}
         - MESSENGER_BOT_ID=${MESSENGER_BOT_ID}
     tty: true
+nlp:
+    hostname: nlp
+    build: ./nlp
+    volumes:
+        - ../gary-nlp:/bot/nlp
+        - ./logs/nlp:/var/log/nlp
+    tty: true
 mongodb:
     hostname: mongo
     links:
+        - "nlp"
         - "connector-slack"
         - "connector-messenger"
     build: ./mongo
