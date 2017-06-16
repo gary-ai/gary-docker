@@ -1,17 +1,40 @@
-connector:
-    hostname: connector
-    build: ./connector
+connector-slack:
+    hostname: connector-slack
+    build: ./connector-slack
     volumes:
-        - ../gary-connector:/bot/gary
-        - ./logs/gary-connector:/var/log/connector
+        - ../gary-connector/slack:/bot
+        - ./logs/connector-slack:/var/log/connector-slack
+    links:
+        - "nlp"
     environment:
         - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-        - BOT_ID=${BOT_ID}
+        - SLACK_BOT_ID=${SLACK_BOT_ID}
     tty: true
-mongodb:
-    hostname: mongo
+connector-messenger:
+    hostname: connector-messenger
+    build: ./connector-messenger
+    volumes:
+        - ../gary-connector/messenger:/bot
+        - ./logs/connector-messenger:/var/log/connector-messenger
+    environment:
+        - MESSENGER_BOT_TOKEN=${MESSENGER_BOT_TOKEN}
+        - MESSENGER_BOT_ID=${MESSENGER_BOT_ID}
+    tty: true
+nlp:
+    hostname: nlp
+    build: ./nlp
     links:
-        - "connector"
+        - "mongo"
+    volumes:
+        - ../gary-nlp:/bot
+        - ./logs/nlp:/var/log/nlp
+    ports:
+        - 0.0.0.0:5000:5000
+    tty: true
+mongo:
+    hostname: mongo
+        - "connector-slack"
+        - "connector-messenger"
     build: ./mongo
     environment:
         - DB_PASS=${DB_PASS}
