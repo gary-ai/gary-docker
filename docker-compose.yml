@@ -4,6 +4,8 @@ connector-slack:
     volumes:
         - ../gary-connector/slack:/bot
         - ./logs/connector-slack:/var/log/connector-slack
+    links:
+        - "nlp"
     environment:
         - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
         - SLACK_BOT_ID=${SLACK_BOT_ID}
@@ -26,6 +28,8 @@ nlp:
     volumes:
         - ../gary-nlp:/bot
         - ./logs/nlp:/var/log/nlp
+    ports:
+        - 0.0.0.0:5000:5000
     tty: true
 mongo:
     hostname: mongo
