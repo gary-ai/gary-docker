@@ -1,21 +1,54 @@
-connector:
-    hostname: connector
-    build: ./connector
-    volumes:
-        - ../gary-connector:/bot/gary
-        - ./logs/gary-connector:/var/log/connector
-    environment:
-        - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-        - BOT_ID=${BOT_ID}
-    tty: true
-mongodb:
-    hostname: mongo
-    links:
-        - "connector"
-    build: ./mongo
-    environment:
-        - DB_PASS=${DB_PASS}
-        - DB_USER=${DB_USER}
+version: '2'
+services:
+  api:
+    hostname: api
+    build:
+      dockerfile: gary-api/docker/Dockerfile
+      context: gary-api/
     ports:
-        - 27017:27017
+      - 8081:8080
+    volumes:
+      - ./gary-api:/usr/src/app
+      - ./logs/api:/var/log/api
+    environment:
+      - APP=server.js
+      - NODE_ENV=development
+
+  connector-slack:
+    hostname: connector-slack
+    build:
+      dockerfile: gary-connector/slack/Dockerfile
+      context: gary-connector/slack/
+    volumes:
+      - ./gary-connector:/bot
+      - ./logs/connector:/var/log/connector
+    environment:
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+      - BOT_ID=${BOT_ID}
+    links:
+      - nlp
+    tty: true
+
+  nlp:
+    hostname: nlp
+    build:
+      dockerfile: gary-nlp/docker/Dockerfile
+      context: gary-nlp/
+    volumes:
+      - ./gary-nlp:/bot
+      - ./logs/nlp:/var/log/nlp
+    ports:
+      - 0.0.0.0:5000:5000
+    links:
+      - mongo
+    tty: true
+
+  mongodb:
+    hostname: mongo
+    image: mongo
+    environment:
+      - DB_PASS=${DB_PASS}
+      - DB_USER=${DB_USER}
+    ports:
+      - 27017:27017
     tty: true
