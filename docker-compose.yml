@@ -3,8 +3,8 @@ services:
   api:
     hostname: api
     build:
-      dockerfile: gary-api/docker/Dockerfile
       context: gary-api/
+      dockerfile: docker/Dockerfile
     ports:
       - 8081:8080
     volumes:
@@ -17,11 +17,11 @@ services:
   connector-slack:
     hostname: connector-slack
     build:
-      dockerfile: gary-connector/slack/Dockerfile
       context: gary-connector/slack/
+      dockerfile: Dockerfile
     volumes:
-      - ./gary-connector:/bot
-      - ./logs/connector:/var/log/connector
+      - ./gary-connector/slack/:/bot/
+      - ./logs/connector/slack/:/var/log/connector/
     environment:
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
       - BOT_ID=${BOT_ID}
@@ -32,23 +32,20 @@ services:
   nlp:
     hostname: nlp
     build:
-      dockerfile: gary-nlp/docker/Dockerfile
       context: gary-nlp/
+      dockerfile: docker/Dockerfile
     volumes:
-      - ./gary-nlp:/bot
-      - ./logs/nlp:/var/log/nlp
+      - ./gary-nlp:/bot/
+      - ./logs/nlp:/var/log/nlp/
     ports:
       - 0.0.0.0:5000:5000
     links:
       - mongo
     tty: true
 
-  mongodb:
+  mongo:
     hostname: mongo
     image: mongo
-    environment:
-      - DB_PASS=${DB_PASS}
-      - DB_USER=${DB_USER}
     ports:
       - 27017:27017
     tty: true
