@@ -47,7 +47,7 @@ services:
 
   tensor:
     hostname: tensor
-    image: nandotk/tflearn-nltk:test
+    image: nandotk/tflearn-nltk:0.1
     volumes:
       - ./gary-nlp:/bot/
       - ./logs/nlp:/var/log/nlp/
