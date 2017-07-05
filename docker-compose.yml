@@ -45,14 +45,6 @@ services:
       - mongo
     tty: true
 
-  tensor:
-    hostname: tensor
-    image: nandotk/tflearn-nltk:0.1
-    volumes:
-      - ./gary-nlp:/bot/
-      - ./logs/nlp:/var/log/nlp/
-    tty: true
-
   mongo:
     hostname: mongo
     image: mongo
