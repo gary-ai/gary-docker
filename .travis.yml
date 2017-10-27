@@ -1,0 +1,12 @@
+notifications:
+  slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
+
+sudo: required
+
+language: python
+
+services:
+  - docker
+
+script:
+- make travis
