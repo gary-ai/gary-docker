@@ -27,7 +27,8 @@ travis_test:
 	docker-compose up -d
 	sleep 1
 	sh -c 'docker exec -it gary_nlp ps -eaf'
-	sh -c 'docker exec -it gary_nlp pgrep -f "py.test" | while read PID; do echo -17 > /proc/$PID/oom_adj; done'
+	sh -c 'docker exec -it gary_nlp python training.py'
+	sleep 1
 	sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
 
 stop:
