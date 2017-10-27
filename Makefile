@@ -24,9 +24,7 @@ local_test:
 travis_test:
 	docker-compose build
 	sleep 1
-	docker-compose create
-	sleep 1
-	docker-compose start
+	docker-compose up
 	sleep 1
 	sh -c 'docker exec -t -i `docker ps | grep gary_nlp | cut -f 1 -d " "` ps -eaf'
 	sh -c 'docker exec -t -i `docker ps | grep gary_nlp | cut -f 1 -d " "` py.test -svv test_chatbot.py'
