@@ -1,12 +1,13 @@
 notifications:
   slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
-
 sudo: required
-
 language: python
-
 services:
   - docker
-
+git:
+  submodules: false
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
 script:
 - make travis
