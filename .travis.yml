@@ -1,6 +1,6 @@
 notifications:
   slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
-sudo: required
+sudo: false
 language: python
 services:
   - docker
@@ -11,6 +11,7 @@ before_install:
   - git submodule update --init --recursive
 script:
   - make travis
-  - sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
 after_success:
+  - make stop
+after_failure:
   - make stop
