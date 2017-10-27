@@ -32,6 +32,7 @@ services:
     tty: true
 
   nlp:
+    container_name: gary_nlp
     hostname: nlp
     build:
       context: gary-nlp/
