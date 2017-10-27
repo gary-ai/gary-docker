@@ -15,6 +15,11 @@ travis:
 pull:
 	docker pull $(DOCKER_IMAGE)
 
+training:
+	docker-compose start
+	sleep 1
+	sh -c 'docker exec -it gary_nlp python training.py'
+
 local_test:
 	docker-compose start
 	sleep 1
