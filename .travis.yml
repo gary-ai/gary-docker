@@ -1,7 +1,6 @@
 notifications:
   slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
 sudo: false
-language: python
 services:
   - docker
 git:
@@ -9,8 +8,9 @@ git:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+  - make build
 script:
-  - make travis_test
+  - make test
 after_success:
   - make stop
 after_failure:
