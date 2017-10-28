@@ -17,23 +17,17 @@ pull:
 
 training:
 	docker-compose start
-	sleep 1
 	sh -c 'docker exec gary_nlp python training.py &>/dev/null'
 
 local_test:
 	docker-compose start
-	sleep 1
 	sh -c 'docker exec -it gary_nlp ps -eaf'
 	sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
 
 travis_test:
 	docker-compose build
-	sleep 1
 	docker-compose up -d
-	sleep 20
 	sh -c 'docker exec -it gary_nlp ps -eaf'
-	sh -c 'docker exec gary_nlp python training.py &>/dev/null'
-	sleep 1
 	sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
 
 stop:
