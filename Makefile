@@ -30,9 +30,9 @@ travis_test:
 	docker-compose build
 	sleep 1
 	docker-compose up -d
-	sleep 1
+	sleep 10
 	sh -c 'docker exec -it gary_nlp ps -eaf'
-	sleep 1
+	sleep 10
 	sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
 
 stop:
