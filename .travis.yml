@@ -1,6 +1,7 @@
+language: python
+sudo: false
 notifications:
   slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
-sudo: false
 services:
   - docker
 git:
@@ -11,7 +12,3 @@ before_install:
   - make build
 script:
   - make test
-after_success:
-  - make stop
-after_failure:
-  - make stop
