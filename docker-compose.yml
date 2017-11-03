@@ -1,23 +1,6 @@
 version: '2'
 services:
-#  api:
-#    hostname: api
-#    build:
-#      context: gary-api/
-#      dockerfile: docker/Dockerfile
-#    ports:
-#      - 8081:8080
-#    volumes:
-#      - ./gary-api:/usr/src/app
-#      - ./logs/api:/var/log/api
-#    environment:
-#      - APP=server.js
-#      - NODE_ENV=development
-#    links:
-#      - mongo
-
   connector-slack:
-    hostname: connector-slack
     build:
       context: gary-connector/slack/
       dockerfile: Dockerfile
