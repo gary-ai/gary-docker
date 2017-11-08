@@ -1,6 +1,7 @@
 version: '2'
 services:
   connector-slack:
+    container_name: gary_slack
     build:
       context: gary-connector/slack/
       dockerfile: Dockerfile
@@ -30,8 +31,7 @@ services:
     tty: true
 
   mongo:
+    container_name: gary_mongo
     hostname: mongo
     image: mongo
-    ports:
-      - 27017:27017
     tty: true
