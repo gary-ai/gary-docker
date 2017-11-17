@@ -88,3 +88,12 @@ celerybeat-schedule
 venv/
 ENV/
 logs/
+
+
+/nlp/checkpoint
+/nlp/model.tflearn.*
+/nlp/training_data
+/nlp/tflearn_logs
+
+# your custom config need update
+/nlp/fixtures/config.json

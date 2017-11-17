@@ -9,11 +9,11 @@ services:
     container_name: gary_nlp
     hostname: nlp
     build:
-      context: gary-nlp/
+      context: nlp/
       dockerfile: docker/Dockerfile
     volumes:
-      - ./gary-nlp:/bot/
-      - ./logs/nlp:/var/log/nlp/
+      - ./nlp:/bot/
+      - ./logs/nlp:/var/log/
     ports:
       - 5051:5000
     links:
@@ -22,11 +22,11 @@ services:
   connector-slack:
     container_name: gary_slack
     build:
-      context: gary-connector/slack/
+      context: connector/slack/
       dockerfile: Dockerfile
     volumes:
-      - ./gary-connector/slack/:/bot/
-      - ./logs/connector/slack/:/var/log/connector/
+      - ./connector/slack/:/bot/
+      - ./logs/connector/slack/:/var/log/
     environment:
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
       - BOT_ID=${BOT_ID}
