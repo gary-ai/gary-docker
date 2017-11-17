@@ -1,9 +1,0 @@
-[submodule "gary-connector"]
-	path = gary-connector
-	url = git@github.com:gary-ai/gary-connector.git
-[submodule "gary-nlp"]
-	path = gary-nlp
-	url = git@github.com:gary-ai/gary-nlp.git
-[submodule "gary-api"]
-	path = gary-api
-	url = git@github.com:gary-ai/gary-api.git
