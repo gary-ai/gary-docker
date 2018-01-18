@@ -4,6 +4,7 @@ services:
     container_name: gary_mongo
     hostname: mongo
     image: mongo
+    restart: always
     tty: true
   nlp:
     container_name: gary_nlp
@@ -11,6 +12,7 @@ services:
     build:
       context: nlp/
       dockerfile: docker/Dockerfile
+    restart: always
     volumes:
       - ./nlp:/bot/
       - ./logs/nlp:/var/log/
@@ -24,6 +26,7 @@ services:
     build:
       context: connector/slack/
       dockerfile: Dockerfile
+    restart: always
     volumes:
       - ./connector/slack/:/bot/
       - ./logs/connector/slack/:/var/log/
