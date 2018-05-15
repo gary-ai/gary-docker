@@ -7,7 +7,7 @@ services:
     restart: always
     tty: true
   nlp:
-    container_name: gary_nlp
+    container_name: gary_nlp_2
     hostname: nlp
     build:
       context: nlp/
@@ -33,6 +33,20 @@ services:
     environment:
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
       - BOT_ID=${BOT_ID}
+    links:
+      - nlp
+    tty: true
+  connector-discord:
+    container_name: gary_discord
+    build:
+      context: connector/discord/
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./connector/discord/:/bot/
+      - ./logs/connector/discord/:/var/log/
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
     links:
       - nlp
     tty: true
