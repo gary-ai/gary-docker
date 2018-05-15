@@ -50,7 +50,7 @@ if __name__ == "__main__":
         while True:
             # rtm_read() read everything from websocket !
             user_id, command, channel = parse_slack_output(slack_client.rtm_read())
-            if command and channel:
+            if command and channel and channel.is_private:
                 handle_command(user_id, command, channel)
             time.sleep(READ_WEBSOCKET_DELAY)
     else:
