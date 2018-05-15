@@ -7,7 +7,7 @@ services:
     restart: always
     tty: true
   nlp:
-    container_name: gary_nlp_2
+    container_name: gary_nlp
     hostname: nlp
     build:
       context: nlp/

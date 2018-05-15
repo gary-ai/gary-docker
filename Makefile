@@ -9,8 +9,7 @@ pull:
 	docker pull $(DOCKER_IMAGE)
 
 build:
-	docker-compose build
-	docker-compose up -d
+	docker-compose up -d --build
 	sh -c 'docker exec gary_nlp python training.py'
 
 test:
