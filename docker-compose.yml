@@ -32,7 +32,7 @@ services:
       - ./logs/connector/slack/:/var/log/
     environment:
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-      - BOT_ID=${BOT_ID}
+      - SLACK_BOT_ID=${SLACK_BOT_ID}
     links:
       - nlp
     tty: true

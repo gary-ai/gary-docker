@@ -25,10 +25,10 @@ def handle_command(user_id, user_entry, user_chan):
 async def on_message(message):
     if message.author == client.user:
         return
-    rep = 'error :robot:'
+
     if message.channel.is_private:
         rep = handle_command(message.author.id, message.content, message.channel.id)
-    await client.send_message(message.channel, rep)
+        await client.send_message(message.channel, rep)
 
 
 @client.event
