@@ -56,7 +56,7 @@ def listen():
     user_id, command, channel = yield from parse_slack_output(rtm_message)
     if command and channel and user_id != BOT_ID:
         msg = yield from handle_command(user_id, command, channel)
-        await sc.rtm_send_message(channel, msg)
+        sc.rtm_send_message(channel, msg)
 
     asyncio.async(listen())
 
