@@ -20,9 +20,10 @@ def handle_command(user_id, user_entry, user_chan):
         returns back what it needs for clarification.
     """
     yield from asyncio.sleep(1)
+    print (user_id, user_entry, user_chan)
     response = "Hum ... I can't access to natural language processing service. :robot_face:"
     try:
-        r = requests.get('http://nlp:5000/api/message/' + user_id.encode("utf8") + '/' + user_chan.encode("utf8") + '/' + user_entry.encode("utf8") + '/').json()
+        r = requests.get('http://nlp:5000/api/message/' + user_id.decode() + '/' + user_chan.decode() + '/' + user_entry.decode() + '/').json()
         if r and 'response' in r and r['response']['message']:
             print ("chat_response: " + r['response']['message'].encode("utf8"))
             response = r['response']['message'].encode("utf8")
