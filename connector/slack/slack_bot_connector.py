@@ -49,21 +49,24 @@ def parse_slack_output(slack_rtm_output):
 @asyncio.coroutine
 def listen():
     yield from asyncio.sleep(1)
-    if sc.rtm_connect():
-            # rtm_read() read everything from websocket !
-            rtm_message = sc.rtm_read()
-            user_id, command, channel = yield from parse_slack_output(rtm_message)
-            if command and channel and user_id != BOT_ID:
-                msg = yield from handle_command(user_id, command, channel)
-                sc.rtm_send_message(channel, msg)
+    # rtm_read() read everything from websocket !
+    rtm_message = sc.rtm_read()
+    print (rtm_message)
+    user_id, command, channel = yield from parse_slack_output(rtm_message)
+    if command and channel and user_id != BOT_ID:
+        msg = yield from handle_command(user_id, command, channel)
+        sc.rtm_send_message(channel, msg)
 
     asyncio.async(listen())
+
 
 def main():
     print('here we go')
+    sc.rtm_connect()
     loop = asyncio.get_event_loop()
     asyncio.async(listen())
     loop.run_forever()
+
 
 if __name__ == '__main__':
     main()
