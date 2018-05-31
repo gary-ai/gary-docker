@@ -22,10 +22,10 @@ def handle_command(user_id, user_entry, user_chan):
     yield from asyncio.sleep(1)
     response = "Hum ... I can't access to natural language processing service. :robot_face:"
     try:
-        r = requests.get('http://nlp:5000/api/message/' + user_id + '/' + user_chan + '/' + user_entry + '/').json()
+        r = requests.get('http://nlp:5000/api/message/' + user_id.encode("utf8") + '/' + user_chan.encode("utf8") + '/' + user_entry.encode("utf8") + '/').json()
         if r and 'response' in r and r['response']['message']:
             print ("chat_response: " + r['response']['message'].encode("utf8"))
-            response = r['response']['message']
+            response = r['response']['message'].encode("utf8")
     except ValueError:
         print ("chat_response: can't decode json from nlp api")
     return response
@@ -56,7 +56,7 @@ def listen():
     user_id, command, channel = yield from parse_slack_output(rtm_message)
     if command and channel and user_id != BOT_ID:
         msg = yield from handle_command(user_id, command, channel)
-        sc.rtm_send_message(channel, msg)
+        await sc.rtm_send_message(channel, msg)
 
     asyncio.async(listen())
 
