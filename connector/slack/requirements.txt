@@ -6,3 +6,4 @@ six==1.10.0
 slackclient==1.0.5
 websocket-client==0.40.0
 pytest==3.2.3
+asyncio==3.4.3
