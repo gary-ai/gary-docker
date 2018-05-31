@@ -23,10 +23,10 @@ def handle_command(user_id, user_entry, user_chan):
     try:
         r = requests.get('http://nlp:5000/api/message/' + user_id + '/' + user_chan + '/' + user_entry + '/').json()
         if r and 'response' in r and r['response']['message']:
-            print "chat_response: " + r['response']['message'].encode("utf8")
+            print ("chat_response: " + r['response']['message'].encode("utf8"))
             response = r['response']['message']
     except ValueError:
-        print "chat_response: can't decode json from nlp api"
+        print ("chat_response: can't decode json from nlp api")
     return response
 
 
