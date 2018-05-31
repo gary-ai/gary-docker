@@ -1,5 +1,6 @@
 import os
 import asyncio
+import requests
 from slackclient import SlackClient
 import time, datetime as dt
 from bot_id_getter import bot_id_getter
