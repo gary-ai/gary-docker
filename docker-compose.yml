@@ -15,7 +15,6 @@ services:
     restart: always
     volumes:
       - ./nlp:/bot/
-      - ./logs/nlp:/var/log/
     ports:
       - 5051:5000
     links:
@@ -29,7 +28,6 @@ services:
     restart: always
     volumes:
       - ./connector/slack/:/bot/
-      - ./logs/connector/slack/:/var/log/
     environment:
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
       - SLACK_BOT_ID=${SLACK_BOT_ID}
@@ -44,7 +42,6 @@ services:
     restart: always
     volumes:
       - ./connector/discord/:/bot/
-      - ./logs/connector/discord/:/var/log/
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
     links:
