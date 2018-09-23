@@ -1,4 +1,4 @@
-DOCKER_IMAGE=victorbalssa/tflearn-nltk:latest
+DOCKER_IMAGE=victorbalssa/nlp-container:v1.0.0
 
 all:
 	@make pull
@@ -9,22 +9,25 @@ pull:
 	docker pull $(DOCKER_IMAGE)
 
 build:
-	docker-compose up -d --build
-	sh -c 'docker exec gary_nlp python training.py'
+	docker-compose build
+	docker-compose up -d mongo
+	docker-compose up -d nlp
+	docker-compose up -d
+	sh -c 'docker exec gary_nlp_1 python training.py'
 
 test:
-	sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
+	sh -c 'docker exec -it gary_nlp_1 py.test -svv test_chatbot.py'
 
 stop:
 	sh -c 'docker stop `docker ps -a -q`'
 
 local_train_ai:
 	docker-compose start
-	sh -c 'docker exec gary_nlp python training.py &>/dev/null'
+	sh -c 'docker exec gary_nlp_1 python training.py &>/dev/null'
 
 local_test:
 	docker-compose start
-	sh -c 'docker exec -it gary_nlp py.test -svv test_chatbot.py'
+	sh -c 'docker exec -it gary_nlp_1 py.test -svv test_chatbot.py'
 
 local_remove:
 	@make stop
