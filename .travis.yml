@@ -7,11 +7,8 @@ services:
 before_install:
   - docker-compose up -d --build
   - sh -c 'docker exec gary_nlp_1 python fixture.py'
-  - sh -c 'docker exec gary_nlp_1 python training.py'
 script:
   - make test
-after_deploy:
-  - echo "done deploying"
 deploy:
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_ID
