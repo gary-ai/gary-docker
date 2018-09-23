@@ -1,3 +1,20 @@
+mongo:
+  environment:
+    Container: mongo
+  image: mongo
+nlp:
+  command:
+  - /usr/bin/python2.7
+  - /bot/api.py
+  environment:
+    Container: nlp
+  image: victorbalssa/nlp-container:v1.0.0
+  links:
+  - mongo:mongo
+  ports:
+  - 5051:5000
+  volumes:
+  - /Users/victorbalssa/gpe/gary/nlp:/bot
 connectordiscord:
   command:
   - python
@@ -23,20 +40,3 @@ connectorslack:
   - nlp:nlp
   volumes:
   - /Users/victorbalssa/gpe/gary/connector/slack/:/bot
-mongo:
-  environment:
-    Container: mongo
-  image: mongo
-nlp:
-  command:
-  - /usr/bin/python2.7
-  - /bot/api.py
-  environment:
-    Container: nlp
-  image: victorbalssa/nlp-container:v1.0.0
-  links:
-  - mongo:mongo
-  ports:
-  - 5051:5000
-  volumes:
-  - /Users/victorbalssa/gpe/gary/nlp:/bot
