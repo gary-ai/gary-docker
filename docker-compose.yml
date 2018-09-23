@@ -1,49 +1,42 @@
-version: '2'
-services:
-  mongo:
-    container_name: gary_mongo
-    hostname: mongo
-    image: mongo
-    restart: always
-    tty: true
-  nlp:
-    container_name: gary_nlp
-    hostname: nlp
-    build:
-      context: nlp/
-      dockerfile: docker/Dockerfile
-    restart: always
-    volumes:
-      - ./nlp:/bot/
-    ports:
-      - 5051:5000
-    links:
-      - mongo
-    tty: true
-  connector-slack:
-    container_name: gary_slack
-    build:
-      context: connector/slack/
-      dockerfile: Dockerfile
-    restart: always
-    volumes:
-      - ./connector/slack/:/bot/
-    environment:
-      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
-      - SLACK_BOT_ID=${SLACK_BOT_ID}
-    links:
-      - nlp
-    tty: true
-  connector-discord:
-    container_name: gary_discord
-    build:
-      context: connector/discord/
-      dockerfile: Dockerfile
-    restart: always
-    volumes:
-      - ./connector/discord/:/bot/
-    environment:
-      - DISCORD_TOKEN=${DISCORD_TOKEN}
-    links:
-      - nlp
-    tty: true
+mongo:
+  environment:
+    Container: mongo
+  image: mongo
+nlp:
+  command:
+  - /usr/bin/python2.7
+  - /bot/api.py
+  environment:
+    Container: nlp
+  image: victorbalssa/nlp-container:v1.0.0
+  links:
+  - mongo:mongo
+  ports:
+  - 5051:5000
+  volumes:
+  - ./nlp:/bot
+connectordiscord:
+  command:
+  - python
+  - ./discord_bot_connector.py
+  environment:
+    Container: discord-co
+    DISCORD_TOKEN: ${DISCORD_TOKEN}
+  image: victorbalssa/python-container:v1.0.1
+  links:
+  - nlp:nlp
+  volumes:
+  - ./connector/discord/:/bot
+connectorslack:
+  command:
+  - python
+  - ./slack_bot_connector.py
+  environment:
+    Container: slack-co
+    SLACK_BOT_ID: ${SLACK_BOT_ID}
+    SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}
+  image: victorbalssa/python-container:v1.0.1
+  links:
+  - nlp:nlp
+  volumes:
+  - ./connector/slack/:/bot
