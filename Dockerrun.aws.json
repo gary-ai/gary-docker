@@ -61,7 +61,7 @@
           "value": "mongo"
         }
       ],
-      "essential": false,
+      "essential": true,
       "memory": 128
     },
     {
