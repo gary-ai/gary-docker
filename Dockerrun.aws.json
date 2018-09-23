@@ -31,7 +31,7 @@
           "value": "nlp"
         }
       ],
-      "essential": false,
+      "essential": true,
       "memory": 128,
       "mountPoints": [
         {
@@ -61,7 +61,7 @@
           "value": "mongo"
         }
       ],
-      "essential": true,
+      "essential": false,
       "memory": 128
     },
     {

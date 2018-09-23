@@ -1,12 +1,8 @@
-language: python
-sudo: false
-notifications:
-  slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
+sudo: true
 services:
   - docker
 before_install:
-  - docker-compose up -d --build
-  - sh -c 'docker exec gary_nlp_1 python fixture.py'
+  - make build
 script:
   - make test
 deploy:
