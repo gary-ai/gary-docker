@@ -14,7 +14,7 @@ nlp:
   ports:
   - 5051:5000
   volumes:
-  - /Users/victorbalssa/gpe/gary/nlp:/bot
+  - ./nlp:/bot
 connectordiscord:
   command:
   - python
@@ -26,7 +26,7 @@ connectordiscord:
   links:
   - nlp:nlp
   volumes:
-  - /Users/victorbalssa/gpe/gary/connector/discord/:/bot
+  - ./connector/discord/:/bot
 connectorslack:
   command:
   - python
@@ -39,4 +39,4 @@ connectorslack:
   links:
   - nlp:nlp
   volumes:
-  - /Users/victorbalssa/gpe/gary/connector/slack/:/bot
+  - ./connector/slack/:/bot
