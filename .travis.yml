@@ -5,7 +5,7 @@ notifications:
 services:
   - docker
 before_install:
-  - docker-compose up -d -v --build
+  - docker-compose up -d --build
   - sh -c 'docker exec gary_nlp_1 python training.py'
 script:
   - make test
