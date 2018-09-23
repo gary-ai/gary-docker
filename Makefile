@@ -10,9 +10,9 @@ pull:
 
 build:
 	docker-compose build
-	docker-compose up -d mongo
-	docker-compose up -d nlp
-	docker-compose up -d
+	docker-compose start mongo
+	docker-compose start nlp
+	docker-compose start
 	sh -c 'docker exec gary_nlp_1 python training.py'
 
 test:
