@@ -97,3 +97,8 @@ logs/
 
 # your custom config need update
 /nlp/fixtures/config.json
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
