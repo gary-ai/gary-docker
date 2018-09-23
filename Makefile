@@ -10,6 +10,7 @@ pull:
 
 build:
 	docker-compose up -d --build
+	docker-compose ps
 	sh -c 'docker exec gary_nlp_1 python training.py'
 
 test:
