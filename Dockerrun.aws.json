@@ -31,7 +31,7 @@
           "value": "nlp"
         }
       ],
-      "essential": true,
+      "essential": false,
       "memory": 128,
       "mountPoints": [
         {
@@ -81,7 +81,7 @@
           "value": "${SLACK_BOT_ID}"
         }
       ],
-      "essential": true,
+      "essential": false,
       "memory": 64,
       "mountPoints": [
         {
@@ -98,7 +98,7 @@
     {
       "name": "connector-discord",
       "image": "victorbalssa/python-container:v1.0.1",
-      "essential": true,
+      "essential": false,
       "memory": 64,
       "environment": [
         {
