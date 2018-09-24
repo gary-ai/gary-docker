@@ -10,12 +10,8 @@ pull:
 
 build:
 	docker-compose up -d --build
-	docker-compose ps
-	sleep 10
 	docker-compose logs
-	sleep 10
-	sh -c 'docker exec gary_nlp_1 python fixture.py'
-	sleep 10
+	sleep 20
 	docker-compose logs
 
 test:
