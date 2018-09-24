@@ -2,6 +2,7 @@ mongo:
   environment:
     Container: mongo
   image: mongo
+  hostname: mongo
 nlp:
   command: >
     bash -c "/usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py"
