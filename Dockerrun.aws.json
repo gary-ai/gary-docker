@@ -49,7 +49,15 @@
           "containerPort": 5000
         }
       ],
-      "command": ["/usr/bin/python2.7", "/bot/api.py"]
+      "command":
+      [
+        "/usr/bin/python2.7",
+        "/bot/fixture.py",
+        "/usr/bin/python2.7",
+        "/bot/training.py",
+        "/usr/bin/python2.7",
+        "/bot/api.py"
+      ]
     },
     {
       "name": "mongo",

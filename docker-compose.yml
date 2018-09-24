@@ -3,9 +3,8 @@ mongo:
     Container: mongo
   image: mongo
 nlp:
-  command:
-  - /usr/bin/python2.7
-  - /bot/api.py
+  command: >
+    bash -c "/usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py"
   environment:
     Container: nlp
   image: victorbalssa/nlp-container:v1.0.0
