@@ -51,12 +51,7 @@
       ],
       "command":
       [
-        "/usr/bin/python2.7",
-        "/bot/fixture.py",
-        "/usr/bin/python2.7",
-        "/bot/training.py",
-        "/usr/bin/python2.7",
-        "/bot/api.py"
+        "bash -c \"/usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py\""
       ]
     },
     {
