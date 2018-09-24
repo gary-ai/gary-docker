@@ -11,8 +11,9 @@ pull:
 build:
 	docker-compose up -d --build
 	docker-compose ps
-	sh -c 'docker exec gary_nlp_1 python fixture.py &>/dev/null'
-	sh -c 'docker exec gary_nlp_1 python training.py &>/dev/null'
+	docker-compose logs
+	sh -c 'docker exec gary_nlp_1 python fixture.py'
+	sh -c 'docker exec gary_nlp_1 python training.py'
 
 test:
 	sh -c 'docker exec -it gary_nlp_1 py.test -svv test_chatbot.py'
