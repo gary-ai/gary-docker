@@ -11,9 +11,12 @@ pull:
 build:
 	docker-compose up -d --build
 	docker-compose ps
+	sleep 10
 	docker-compose logs
+	sleep 10
 	sh -c 'docker exec gary_nlp_1 python fixture.py'
-	sh -c 'docker exec gary_nlp_1 python training.py'
+	sleep 10
+	docker-compose logs
 
 test:
 	sh -c 'docker exec -it gary_nlp_1 py.test -svv test_chatbot.py'
