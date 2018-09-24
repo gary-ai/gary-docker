@@ -10,9 +10,6 @@ pull:
 
 build:
 	docker-compose up -d --build
-	docker-compose logs
-	sleep 20
-	docker-compose logs
 
 test:
 	sh -c 'docker exec -it gary_nlp_1 py.test -svv test_chatbot.py'

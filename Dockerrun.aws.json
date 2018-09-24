@@ -43,12 +43,6 @@
       "links": [
         "mongo"
       ],
-      "portMappings": [
-        {
-          "hostPort": 5051,
-          "containerPort": 5000
-        }
-      ],
       "command":
       [
         "bash",
