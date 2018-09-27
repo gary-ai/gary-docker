@@ -2,7 +2,12 @@ sudo: true
 services:
   - docker
 before_install:
-  - make build
+  - docker-compose build
+  - docker-compose start mongo
+  - docker-compose start slack
+  - docker-compose start discord
+  - sleep 15
+  - docker-compose start nlp
 script:
   - make test
 after_failure:
