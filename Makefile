@@ -9,12 +9,11 @@ pull:
 	docker pull $(DOCKER_IMAGE)
 
 build:
-	docker-compose build
-	docker-compose start mongo
-	docker-compose start slack
-	docker-compose start discord
-	sleep 15
-	docker-compose start nlp
+    docker-compose up -d mongo
+    docker-compose up -d connectorslack
+    docker-compose up -d connectordiscord
+    sleep 15
+    docker-compose up -d nlp
 
 test:
 	sh -c 'docker exec -it gary_nlp_1 py.test -svv test_chatbot.py'
