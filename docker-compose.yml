@@ -17,8 +17,6 @@ nlp:
   - 5051:5000
   volumes:
   - ./nlp:/bot
-  depends_on:
-  - mongo
 connectordiscord:
   command:
   - python
