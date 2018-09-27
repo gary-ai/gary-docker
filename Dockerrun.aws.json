@@ -32,7 +32,7 @@
         }
       ],
       "essential": true,
-      "memory": 128,
+      "memory": 256,
       "mountPoints": [
         {
           "sourceVolume": "nlp",
@@ -41,7 +41,7 @@
         }
       ],
       "links": [
-        "mongo"
+        "mongo:mongo"
       ],
       "command":
       [
@@ -61,7 +61,7 @@
         }
       ],
       "essential": true,
-      "memory": 128
+      "memory": 64
     },
     {
       "name": "connector-slack",
@@ -90,7 +90,7 @@
         }
       ],
       "links": [
-        "nlp"
+        "nlp:nlp"
       ],
       "command": ["python", "./slack_bot_connector.py"]
     },
@@ -110,7 +110,7 @@
         }
       ],
       "links": [
-        "nlp"
+        "nlp:nlp"
       ],
       "mountPoints": [
         {
