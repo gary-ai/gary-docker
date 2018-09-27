@@ -1,18 +1,19 @@
 sudo: true
+language: python
+notifications:
+  slack: brainstorm-etna:hMgNrjhxmXb6CpKKRe5e6oTZ
 services:
   - docker
 before_install:
-  - docker-compose up -d mongo
-  - docker-compose up -d connectorslack
-  - docker-compose up -d connectordiscord
-  - sleep 15
-  - docker-compose up -d nlp
+  - make build
 script:
   - make test
 after_failure:
   - sleep 10
   - docker-compose ps
   - docker-compose logs
+after_success:
+  - make stop
 deploy:
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_ID
