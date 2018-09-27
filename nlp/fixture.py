@@ -13,7 +13,7 @@ users_json = json.loads(users_json.read())
 intents_json = open("./fixtures/intents.json", 'r')
 intents_json = json.loads(intents_json.read())
 
-connection = MongoClient("mongodb://mongo:27017")
+connection = MongoClient("mongodb://172.17.0.2:27017")
 db = connection.gary_db
 users_collection = db.users
 config_collection = db.config

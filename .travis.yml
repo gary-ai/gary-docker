@@ -2,9 +2,17 @@ sudo: true
 services:
   - docker
 before_install:
-  - make build
+  - docker-compose up -d mongo
+  - docker-compose up -d connectorslack
+  - docker-compose up -d connectordiscord
+  - sleep 15
+  - docker-compose up -d nlp
 script:
   - make test
+after_failure:
+  - sleep 10
+  - docker-compose ps
+  - docker-compose logs
 deploy:
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_ID

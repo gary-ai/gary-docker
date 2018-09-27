@@ -43,13 +43,12 @@
       "links": [
         "mongo"
       ],
-      "portMappings": [
-        {
-          "hostPort": 5051,
-          "containerPort": 5000
-        }
-      ],
-      "command": ["/usr/bin/python2.7", "/bot/api.py"]
+      "command":
+      [
+        "bash",
+        "-c",
+        "/usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py"
+      ]
     },
     {
       "name": "mongo",

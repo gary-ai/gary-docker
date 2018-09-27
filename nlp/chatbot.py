@@ -75,7 +75,7 @@ def classify(sentence):
 
 def chat_response(sentence, user='1', show_details=False):
     # import our chat-bot intents data from mongo
-    connection = MongoClient("mongodb://mongo:27017")
+    connection = MongoClient("mongodb://172.17.0.2:27017")
     db = connection.gary_db
     intents = db.intents.find()
     results = classify(sentence)
