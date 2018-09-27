@@ -3,11 +3,11 @@ services:
   - docker
 before_install:
   - docker-compose build
-  - docker-compose up mongo
-  - docker-compose start slack
-  - docker-compose start discord
+  - docker-compose up -d mongo
+  - docker-compose up -d slack
+  - docker-compose up -d discord
   - sleep 15
-  - docker-compose start nlp
+  - docker-compose up -d nlp
 script:
   - make test
 after_failure:
