@@ -22,6 +22,19 @@
   ],
   "containerDefinitions": [
     {
+      "name": "mongo",
+      "hostname": "mongo",
+      "image": "mongo",
+      "environment": [
+        {
+          "name": "Container",
+          "value": "mongo"
+        }
+      ],
+      "essential": true,
+      "memory": 64
+    },
+    {
       "name": "nlp",
       "hostname": "nlp",
       "image": "victorbalssa/nlp-container:v1.0.0",
@@ -43,25 +56,11 @@
       "links": [
         "mongo:mongo"
       ],
-      "command":
-      [
+      "command": [
         "bash",
         "-c",
         "/usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py"
       ]
-    },
-    {
-      "name": "mongo",
-      "hostname": "mongo",
-      "image": "mongo",
-      "environment": [
-        {
-          "name": "Container",
-          "value": "mongo"
-        }
-      ],
-      "essential": true,
-      "memory": 64
     },
     {
       "name": "connector-slack",
@@ -92,7 +91,10 @@
       "links": [
         "nlp:nlp"
       ],
-      "command": ["python", "./slack_bot_connector.py"]
+      "command": [
+        "python",
+        "./slack_bot_connector.py"
+      ]
     },
     {
       "name": "connector-discord",
@@ -119,7 +121,10 @@
           "readOnly": false
         }
       ],
-      "command": ["python", "./discord_bot_connector.py"]
+      "command": [
+        "python",
+        "./discord_bot_connector.py"
+      ]
     }
   ]
 }
