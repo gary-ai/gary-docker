@@ -6,7 +6,7 @@ nlp:
   command:
   - bash
   - -c
-  - /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py
+  - /usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py
   environment:
     Container: nlp
     IS_DEV: ${IS_DEV}
