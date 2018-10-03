@@ -9,6 +9,7 @@ pull:
 	docker pull $(DOCKER_IMAGE)
 
 build:
+	sh -c 'cp .env.dev .env'
 	docker-compose up -d mongo
 	sleep 5
 	docker-compose up -d nlp

@@ -1,15 +1,15 @@
 import requests
-
+import os
 from flask import Flask, jsonify, url_for, redirect, request
 from flask_pymongo import PyMongo
 from flask_restful import Api, Resource
 from chatbot import chat_response
 
 app = Flask(__name__)
-app.config['MONGO_HOST'] = 'mongo'
-app.config['MONGO_PORT'] = 27017
-app.config["MONGO_DBNAME"] = "gary_db"
-app.config['DEBUG'] = True
+app.config['MONGO_HOST'] = os.environ.get("MONGO_HOST")
+app.config['MONGO_PORT'] = os.environ.get("MONGO_PORT")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config['DEBUG'] = True if os.environ.get("IS_DEV") == 'true' else False
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 mongo = PyMongo(app, config_prefix='MONGO')
 
@@ -46,4 +46,4 @@ api = Api(app)
 api.add_resource(GaryBotResponse, "/api/message/<string:user_id>/<string:channel>/<string:command>/", endpoint="message")
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0')

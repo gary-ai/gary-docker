@@ -22,17 +22,43 @@
   ],
   "containerDefinitions": [
     {
-      "name": "mongo",
-      "hostname": "mongo",
-      "image": "mongo",
+      "name": "training",
+      "hostname": "training",
+      "image": "victorbalssa/nlp-container:v1.0.0",
       "environment": [
         {
           "name": "Container",
-          "value": "mongo"
+          "value": "training"
+        },
+        {
+          "name": "IS_DEV",
+          "value": "${IS_DEV}"
+        },
+        {
+          "name": "MONGO_HOST",
+          "value": "${MONGO_HOST}"
+        },
+        {
+          "name": "MONGO_PORT",
+          "value": "${MONGO_PORT}"
+        },
+        {
+          "name": "MONGO_DBNAME",
+          "value": "${MONGO_DBNAME}"
         }
       ],
       "essential": true,
-      "memory": 64
+      "memory": 256,
+      "mountPoints": [
+        {
+          "sourceVolume": "nlp",
+          "containerPath": "/bot",
+          "readOnly": false
+        }
+      ],
+      "links": [
+        "mongo:mongo"
+      ]
     },
     {
       "name": "nlp",
@@ -42,6 +68,22 @@
         {
           "name": "Container",
           "value": "nlp"
+        },
+        {
+          "name": "IS_DEV",
+          "value": "${IS_DEV}"
+        },
+        {
+          "name": "MONGO_HOST",
+          "value": "${MONGO_HOST}"
+        },
+        {
+          "name": "MONGO_PORT",
+          "value": "${MONGO_PORT}"
+        },
+        {
+          "name": "MONGO_DBNAME",
+          "value": "${MONGO_DBNAME}"
         }
       ],
       "essential": true,

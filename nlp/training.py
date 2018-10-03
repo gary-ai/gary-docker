@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import tflearn
 import tensorflow as tf
 import random
@@ -8,8 +9,11 @@ from pymongo import MongoClient
 from nltk.stem.lancaster import LancasterStemmer
 
 # import our chat-bot intents data from mongo
-connection = MongoClient("mongodb://172.17.0.2:27017")
-db = connection.gary_db
+MONGO_HOST = os.environ.get("MONGO_HOST")
+MONGO_PORT = os.environ.get("MONGO_PORT")
+MONGO_DBNAME = os.environ.get("MONGO_DBNAME")
+connection = MongoClient("mongodb://" + MONGO_HOST + ":" + MONGO_PORT)
+db = connection[MONGO_DBNAME]
 intents = db.intents.find()
 
 words = []
