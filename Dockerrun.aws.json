@@ -55,6 +55,11 @@
           "containerPath": "/bot",
           "readOnly": false
         }
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "tail -f /dev/null"
       ]
     },
     {
