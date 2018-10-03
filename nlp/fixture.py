@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import json
 import os
 from pymongo import MongoClient
@@ -13,8 +12,11 @@ users_json = json.loads(users_json.read())
 intents_json = open("./fixtures/intents.json", 'r')
 intents_json = json.loads(intents_json.read())
 
-connection = MongoClient("mongodb://172.17.0.2:27017")
-db = connection.gary_db
+MONGO_HOST = os.environ.get("MONGO_HOST")
+MONGO_PORT = os.environ.get("MONGO_PORT")
+MONGO_DBNAME = os.environ.get("MONGO_DBNAME")
+connection = MongoClient("mongodb://" + MONGO_HOST + ":" + MONGO_PORT)
+db = connection.MONGO_DBNAME
 users_collection = db.users
 config_collection = db.config
 intents_collection = db.intents
