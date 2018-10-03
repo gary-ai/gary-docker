@@ -10,6 +10,11 @@ nlp:
     /bot/api.py
   environment:
     Container: nlp
+    MONGO_HOST: ${MONGO_HOST}
+    MONGO_PORT: ${MONGO_PORT}
+    MONGO_DBNAME: ${MONGO_DBNAME}
+    DISCORD_TOKEN: ${DISCORD_TOKEN}
+    IS_DEV: ${IS_DEV}
   image: victorbalssa/nlp-container:v1.0.0
   links:
   - mongo:mongo

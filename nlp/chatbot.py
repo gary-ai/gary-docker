@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import tflearn
 import tensorflow as tf
 import pickle
@@ -75,8 +76,11 @@ def classify(sentence):
 
 def chat_response(sentence, user='1', show_details=False):
     # import our chat-bot intents data from mongo
-    connection = MongoClient("mongodb://172.17.0.2:27017")
-    db = connection.gary_db
+    mongo_host = os.environ.get("MONGO_HOST")
+    mongo_port = os.environ.get("MONGO_PORT")
+    mongo_dbname = os.environ.get("MONGO_DBNAME")
+    connection = MongoClient("mongodb://" + mongo_host + ":" + mongo_port)
+    db = connection[mongo_dbname]
     intents = db.intents.find()
     results = classify(sentence)
     # if we have a classification then find the matching intent tag
