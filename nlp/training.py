@@ -13,7 +13,7 @@ MONGO_HOST = os.environ.get("MONGO_HOST")
 MONGO_PORT = os.environ.get("MONGO_PORT")
 MONGO_DBNAME = os.environ.get("MONGO_DBNAME")
 connection = MongoClient("mongodb://" + MONGO_HOST + ":" + MONGO_PORT)
-db = connection.MONGO_DBNAME
+db = connection[MONGO_DBNAME]
 intents = db.intents.find()
 
 words = []
