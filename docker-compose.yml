@@ -6,15 +6,13 @@ nlp:
   command:
   - bash
   - -c
-  - /usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7
-    /bot/api.py
+  - /usr/bin/python2.7 /bot/fixture.py && /usr/bin/python2.7 /bot/training.py && /usr/bin/python2.7 /bot/api.py
   environment:
     Container: nlp
+    IS_DEV: ${IS_DEV}
     MONGO_HOST: ${MONGO_HOST}
     MONGO_PORT: ${MONGO_PORT}
     MONGO_DBNAME: ${MONGO_DBNAME}
-    DISCORD_TOKEN: ${DISCORD_TOKEN}
-    IS_DEV: ${IS_DEV}
   image: victorbalssa/nlp-container:v1.0.0
   links:
   - mongo:mongo
