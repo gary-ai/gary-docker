@@ -55,9 +55,6 @@
           "containerPath": "/bot",
           "readOnly": false
         }
-      ],
-      "links": [
-        "mongo:mongo"
       ]
     },
     {
@@ -94,9 +91,6 @@
           "containerPath": "/bot",
           "readOnly": false
         }
-      ],
-      "links": [
-        "mongo:mongo"
       ],
       "command": [
         "bash",
