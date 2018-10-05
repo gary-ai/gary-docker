@@ -43,7 +43,11 @@ class GaryBotResponse(Resource):
 
 
 api = Api(app)
-api.add_resource(GaryBotResponse, "/api/message/<string:user_id>/<string:channel>/<string:command>/", endpoint="message")
+api.add_resource(
+    GaryBotResponse,
+    "/api/message/<string:user_id>/<string:channel>/<string:command>/",
+    endpoint="message"
+)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
