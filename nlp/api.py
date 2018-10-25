@@ -10,7 +10,7 @@ app.config['MONGO_HOST'] = os.environ.get("MONGO_HOST")
 app.config['MONGO_PORT'] = os.environ.get("MONGO_PORT")
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config['DEBUG'] = True if os.environ.get("IS_DEV") == 'true' else False
-app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['TEMPLATES_AUTO_RELOAD'] = False
 mongo = PyMongo(app, config_prefix='MONGO')
 
 

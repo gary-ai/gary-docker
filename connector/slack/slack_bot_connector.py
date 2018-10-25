@@ -13,11 +13,11 @@ def handle_command(user_id, user_entry, user_chan):
     try:
         r = requests.get('http://nlp:5000/api/message/' + user_id + '/' + user_chan + '/' + user_entry + '/').json()
         if r and 'response' in r and r['response']['message']:
-            print("chat_response: " + r['response']['message'].encode("utf8"))
+            print("chat_response: " + r['response']['message'])
             response = r['response']['message']
     except ValueError:
         print("chat_response: can't decode json from nlp api")
-    slack_client.api_call("chat.postMessage", channel=channel, text=response, as_user=True)
+    slack_client.api_call("chat.postMessage", channel=user_chan, text=response, as_user=True)
 
 
 def parse_slack_output(slack_rtm_output):
@@ -25,12 +25,12 @@ def parse_slack_output(slack_rtm_output):
     if output_list and len(output_list) > 0:
         for output in output_list:
             if output and 'text' in output:
-                return output['user'], output['text'].encode("utf8"), output['channel']
+                return output['user'], output['text'], output['channel']
     return None, None, None
 
 
 if __name__ == "__main__":
-    READ_WEBSOCKET_DELAY = 1
+    READ_WEBSOCKET_DELAY = 2
     slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
     if slack_client.rtm_connect():
         print("gary connected, ready to handle command!")
