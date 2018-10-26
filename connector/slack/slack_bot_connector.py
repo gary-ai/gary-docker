@@ -24,7 +24,7 @@ def parse_slack_output(slack_rtm_output):
     output_list = slack_rtm_output
     if output_list and len(output_list) > 0:
         for output in output_list:
-            if output and 'text' in output:
+            if output and 'text' in output and 'user' in output and 'channel' in output:
                 return output['user'], output['text'], output['channel']
     return None, None, None
 
